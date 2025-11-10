@@ -61,3 +61,124 @@ header {
 #volver {
     display: none;
 }
+
+/* Botón de menú (hamburguesa) y comportamiento responsive */
+
+.menu-toggle {
+    /* Mostrar el botón siempre para facilitar pruebas; en pantallas grandes
+       la media query lo ocultará si se desea. */
+    display: inline-block;
+    font-size: 1.6rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px 10px;
+}
+
+/* Por defecto ocultamos la navegación (se mostrará con la clase .open)
+   en pantallas pequeñas; en pantallas grandes se restablece a flex. */
+.nav-buttons {
+    display: none; /* se mostrará cuando tenga la clase .open */
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* En pantallas pequeñas escondemos la nav y mostramos el botón de menú */
+@media (max-width: 700px) {
+    .menu-toggle {
+        position: absolute;
+        left: 12px;
+        top: 12px;
+    }
+
+    .nav-buttons {
+        flex-direction: column;
+        gap: 10px;
+        background-color: white;
+        position: absolute;
+        top: 56px;
+        left: 0;
+        right: 0;
+        padding: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .nav-buttons.open {
+        display: flex;
+    }
+}
+
+/* En pantallas grandes mostramos la navegación y ocultamos el botón */
+@media (min-width: 701px) {
+    .menu-toggle { display: none; }
+    .nav-buttons { display: flex; }
+}
+
+/* Aumentar tamaño y aspecto del dropdown para que quede más grande y prolijo */
+.dropdown.position-fixed .btn.dropdown-toggle {
+    font-size: 1.05rem;
+    padding: 0.5rem 0.9rem;
+}
+
+.dropdown-menu {
+    min-width: 340px !important;
+    max-width: 520px;
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+}
+
+.dropdown-menu .list-group-item {
+    /* aumentado padding, interlineado y espacio entre items */
+    padding: 0.9rem 1rem;
+    font-size: 1rem;
+    line-height: 1.6;      /* espacio entre líneas dentro del mismo item */
+    margin-bottom: 0.45rem;/* espacio entre items */
+    letter-spacing: 0.2px;
+}
+
+.dropdown-menu .col-4 {
+    max-width: 36%;
+}
+
+.dropdown-menu .col-8 {
+    max-width: 64%;
+}
+
+/* Separación entre título y párrafo en el panel derecho */
+.dropdown-menu h6,
+.dropdown-menu h4 {
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+}
+
+.dropdown-menu p {
+    margin-bottom: 0.65rem;
+    color: #444;
+    font-size: 0.95rem;
+}
+
+/* Permitimos un poco más de altura para el contenido desplazable */
+.dropdown-menu .scrollspy-example {
+    max-height: 300px;
+    overflow: auto;
+}
+
+/* Opcional: desplazar el título principal si el menú ocupa más ancho (ajusta si no quieres este efecto) */
+header > h1 {
+    margin-left: 100px;
+}
+
+/* pequeño ajuste para que la lista no quede muy apretada en móviles */
+@media (max-width: 480px) {
+    .dropdown-menu {
+        padding: 0.9rem;
+        min-width: 260px !important;
+    }
+    .dropdown-menu .list-group-item {
+        padding: 0.75rem 0.85rem;
+        font-size: 0.98rem;
+    }
+}
